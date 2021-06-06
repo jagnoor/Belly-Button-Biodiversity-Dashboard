@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "d3-array": "^2.12.1"
+  }
+}
