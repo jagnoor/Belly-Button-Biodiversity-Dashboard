@@ -11,6 +11,7 @@ function InitDashboard() {
     });
 
     // update the bar graph
+    // update the bubblechart
     //update the demographic info
 
 
