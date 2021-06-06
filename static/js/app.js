@@ -1,5 +1,18 @@
 console.log("app.js loaded")
 
+function DrawBargraph(sampleId){
+    console.log('DrawBargraph(${sampleId})');
+}
+
+function DrawBubblechart(sampleId){
+    console.log('DrawBubblechart(${sampleId})');
+}
+
+function ShowMetadata(sampleId){
+    console.log('ShowMetadata(${sampleId})');
+}
+
+
 function InitDashboard() {
     console.log("InitDashboard")
 
@@ -8,9 +21,26 @@ function InitDashboard() {
 
     d3.json("data/samples.json").then(function(data) {
         console.log(data);
+
+        var sampleNames = data.names;
+
+        sampleNames.forEach(sampleId => {
+            selector.append("option")
+                .text(sampleId)
+                .property("value", sampleId);
+        });
+
+         // update the bar graph
+        // Create a stub for the bargraph 
+
+        var id = sampleNames[0];
+        
+        DrawBubblechart(id);
+        DrawBargraph(id);
+        ShowMetadata(id);
+
     });
 
-    // update the bar graph
     // update the bubblechart
     //update the demographic info
 
