@@ -1,26 +1,34 @@
 console.log("app.js loaded")
 
-function DrawBargraph(sampleId){
-    console.log('DrawBargraph(${sampleId})');
+function DrawBargraph(sampleId) {
+    console.log(`DrawBargraph(${sampleId})`);
 }
 
-function DrawBubblechart(sampleId){
-    console.log('DrawBubblechart(${sampleId})');
+function DrawBubblechart(sampleId) {
+    console.log(`DrawBubblechart(${sampleId})`);
 }
 
-function ShowMetadata(sampleId){
-    console.log('ShowMetadata(${sampleId})');
+function ShowMetadata(sampleId) {
+    console.log(`ShowMetadata(${sampleId})`);
 }
 
+//add an event handler
+function optionChanged(newSampleId) {
+    console.log(`User Selected ${newSampleId}`)
+
+    DrawBargraph(newSampleId);
+    DrawBubblechart(newSampleId);
+    ShowMetadata(newSampleId);
+}
 
 function InitDashboard() {
-    console.log("InitDashboard")
+    console.log("InitDashboard()")
 
     // Populate the dropdown
     var selector = d3.select("#selDataset");
 
-    d3.json("data/samples.json").then(function(data) {
-        console.log(data);
+    d3.json("data/samples.json").then(data => {
+        // console.log(data);
 
         var sampleNames = data.names;
 
@@ -30,11 +38,11 @@ function InitDashboard() {
                 .property("value", sampleId);
         });
 
-         // update the bar graph
+        // update the bar graph
         // Create a stub for the bargraph 
 
         var id = sampleNames[0];
-        
+
         DrawBubblechart(id);
         DrawBargraph(id);
         ShowMetadata(id);
