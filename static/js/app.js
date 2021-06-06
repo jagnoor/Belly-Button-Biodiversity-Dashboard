@@ -8,6 +8,41 @@ function DrawBargraph(sampleId) {
         var samples = data.samples;
         var resultArray = samples.filter(s => s.id == sampleId);
         console.log(resultArray);
+        var result = resultArray[0];
+        console.log(result);
+
+        var otu_ids = result.otu_ids;
+        var otu_labels = result.otu_labels;
+        var sample_values = result.sample_values;
+        console.log(otu_ids);
+        console.log(otu_labels);
+        console.log(sample_values);
+
+        yticks = otu_ids.slice(0, 10).map(otuId => `OTU ${otuId}`).reverse();
+
+        var barData = {
+            x: sample_values.slice(0, 10).reverse(),
+            y: yticks,
+            type: "bar",
+            text: otu_labels.slice(0, 10).reverse(),
+            orientation: "h",
+        }
+
+        var barArray = [barData];
+
+        var barLayout = {
+
+            title: "Top 10 Bacteria Cultures",
+            margin: {
+                t: 30,
+                1: 150
+            }
+
+        }
+
+
+        Plotly.newPlot("bar", barArray, barLayout);
+
     });
 }
 
